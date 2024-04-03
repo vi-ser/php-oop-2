@@ -1,0 +1,9 @@
+.card {
+  position: relative;
+}
+
+.card .badge {
+  position: absolute;
+  right: 28px;
+  bottom: 28px;
+}

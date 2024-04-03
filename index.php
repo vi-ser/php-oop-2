@@ -55,6 +55,9 @@ $products[5]->image = "https://m.media-amazon.com/images/I/517ES1nzSSL.jpg";
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 
+    <!-- css -->
+    <link rel="stylesheet" href="css/style.css">
+
 </head>
 
 <body>
@@ -95,6 +98,15 @@ $products[5]->image = "https://m.media-amazon.com/images/I/517ES1nzSSL.jpg";
                         <h5 class="product-title">
                             <?= $product->title ?>
                         </h5>
+                        <?php
+                        if ($product instanceof Food) {
+                            echo "<span class='badge bg-success'>Food</span>";
+                        } elseif ($product instanceof Game) {
+                            echo "<span class='badge bg-primary'>Game</span>";
+                        } else {
+                            echo "<span class='badge bg-warning'>Product</span>";
+                        }
+                        ?>
                         <h6 class="product-price text-info ">
                             <?= "€ " . $product->price ?>
                         </h6>
