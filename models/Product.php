@@ -11,9 +11,9 @@ class Product
      *
      * @param  string $_title
      * @param  float $_price
-     * @param  string $_category
+     * @param  Category $_category
      */
-    function __construct($_title, $_price, $_category)
+    function __construct($_title, $_price, Category $_category)
     {
         $this->title = $_title;
         $this->price = $_price;
