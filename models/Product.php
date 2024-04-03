@@ -19,4 +19,5 @@ class Product
         $this->price = $_price;
         $this->category = $_category;
     }
+
 }
