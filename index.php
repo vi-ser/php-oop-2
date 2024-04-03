@@ -98,6 +98,7 @@ $products[5]->image = "https://m.media-amazon.com/images/I/517ES1nzSSL.jpg";
                         <h5 class="product-title">
                             <?= $product->title ?>
                         </h5>
+
                         <?php
                         if ($product instanceof Food) {
                             echo "<span class='badge bg-success'>Food</span>";
@@ -110,6 +111,7 @@ $products[5]->image = "https://m.media-amazon.com/images/I/517ES1nzSSL.jpg";
                         <h6 class="product-price text-info ">
                             <?= "€ " . $product->price ?>
                         </h6>
+                        <?= $product->getIcon() ?>
                     </div>
                 </div>
                 <?php

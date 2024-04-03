@@ -20,4 +20,9 @@ class Product
         $this->category = $_category;
     }
 
+    public function getIcon()
+    {
+        $icon = $this->category->icon;
+        return "<i class='fa-solid fa-$icon'></i>";
+    }
 }
