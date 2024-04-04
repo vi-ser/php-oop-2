@@ -21,7 +21,7 @@ try {
         new Game("Palla rimbalzante resistente per cani", 9.99, $dog, "ball", "gomma"),
         new Product("Guinzaglio in pelle per cani di grossa taglia", 18.49, $dog),
         new Food("Scatoletta di tonno e salmone per gatti", 1.49, $cat, "200", "tonno, salmone"),
-        new Game("Tunnel giocattolo per gatti", 12.99, $cat, "strutture", "tessuto"),
+        new Game("Tunnel giocattolo per gatti", 19.99, $cat, "strutture", "tessuto"),
         new Product("Lettiera igienica in cristalli per gatti", 7.99, $cat),
     ];
 
@@ -97,66 +97,69 @@ try {
 
         <h2 class="text-center mt-5 mb-5">In evidenza</h2>
         <div class="row d-flex" style="gap: 16px;">
+
+
             <?php
-            foreach ($products as $product) {
+
+            if ($error) {
                 ?>
-                <div class="card" style="width: calc(100% / 3 - 20px / 3 * 2);">
-                    <img src="<?= $product->image ?>" class="card-img-top" alt="product">
-                    <div class="card-body">
-                        <h5 class="product-title">
-                            <?= $product->title ?>
-                        </h5>
-
-                        <?php
-                        if ($product instanceof Food) {
-                            echo "<span class='badge bg-success'>Food</span>";
-                        } elseif ($product instanceof Game) {
-                            echo "<span class='badge bg-primary'>Game</span>";
-                        } else {
-                            echo "<span class='badge bg-warning'>Product</span>";
-                        }
-                        ?>
-
-                        <?php
-                        if ($product instanceof Food) {
-                            echo "<span class='info'>Calorie: {$product->calories}</span>";
-                        } elseif ($product instanceof Game) {
-
-                            echo "<span class='info'>Genere: {$product->genre}</span>";
-                        }
-                        ?>
-
-                        <?php
-                        if ($product instanceof Food || $product instanceof Game) {
-                            echo "<br><span class='info'>Componenti: {$product->components}</br>";
-                        }
-                        ?>
-
-                        <h6 class="product-price mt-3 text-info ">
-                            <?= "€ " . $product->price ?>
-                        </h6>
-                        <?= $product->getIcon() ?>
-                    </div>
+                <div class="alert alert-danger" role="alert">
+                    <?= $error ?>
                 </div>
                 <?php
+            } else {
+                ?>
+
+                <?php
+                foreach ($products as $product) {
+                    ?>
+                    <div class="card" style="width: calc(100% / 3 - 20px / 3 * 2);">
+                        <img src="<?= $product->image ?>" class="card-img-top" alt="product">
+                        <div class="card-body">
+                            <h5 class="product-title">
+                                <?= $product->title ?>
+                            </h5>
+
+                            <?php
+                            if ($product instanceof Food) {
+                                echo "<span class='badge bg-success'>Food</span>";
+                            } elseif ($product instanceof Game) {
+                                echo "<span class='badge bg-primary'>Game</span>";
+                            } else {
+                                echo "<span class='badge bg-warning'>Product</span>";
+                            }
+                            ?>
+
+                            <?php
+                            if ($product instanceof Food) {
+                                echo "<span class='info'>Calorie: {$product->calories}</span>";
+                            } elseif ($product instanceof Game) {
+
+                                echo "<span class='info'>Genere: {$product->genre}</span>";
+                            }
+                            ?>
+
+                            <?php
+                            if ($product instanceof Food || $product instanceof Game) {
+                                echo "<br><span class='info'>Componenti: {$product->components}</br>";
+                            }
+                            ?>
+
+                            <h6 class="product-price mt-3 text-info ">
+                                <?= "€ " . $product->price ?>
+                            </h6>
+                            <?= $product->getIcon() ?>
+                        </div>
+                    </div>
+                    <?php
+                }
             }
+
             ?>
 
         </div>
-
-        <?php
-
-        if ($error) {
-            ?>
-            <div class="alert alert-warning" role="alert">
-                <?= $error ?>
-            </div>
-            <?php
-        }
-
-        ?>
-
     </div>
+
 
 
 
