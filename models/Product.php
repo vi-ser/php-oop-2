@@ -16,7 +16,15 @@ class Product
     function __construct($_title, $_price, Category $_category)
     {
         $this->title = $_title;
-        $this->price = $_price;
+
+        if (is_numeric($_price)) {
+
+            $this->price = $_price;
+
+        } else {
+            throw new Exception("Il formato del prezzo inserito non è valido");
+        }
+
         $this->category = $_category;
     }
 

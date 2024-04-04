@@ -13,22 +13,33 @@ $categories = [
     $dog
 ];
 
-$products = [
-    new Food("Croccantini premium per cani", 25.99, $dog, "400", "cereali"),
-    new Game("Palla rimbalzante resistente per cani", 9.99, $dog, "ball", "gomma"),
-    new Product("Guinzaglio in pelle per cani di grossa taglia", 18.49, $dog),
-    new Food("Scatoletta di tonno e salmone per gatti", 1.49, $cat, "200", "tonno, salmone"),
-    new Game("Tunnel giocattolo per gatti", 12.99, $cat, "strutture", "tessuto"),
-    new Product("Lettiera igienica in cristalli per gatti", 7.99, $cat),
-];
+$error = null;
 
-// set delle immagini
-$products[0]->image = "https://laspesaonline.eurospin.it/photo/2022/10/29/792/main/photo/6986201-16821501-20221028094343.jpg";
-$products[1]->image = "https://www.sbsupply.it/media/catalog/product/cache/11/image/800x/602f0fa2c1f0d1ba5e241f914e856ff9/b/l/blanco_pagina_kopie_243_copy_221_1.jpg";
-$products[2]->image = "https://www.fordogtrainers.it/images/large/Guinzaglio-pelle-L12_LRG.jpg";
-$products[3]->image = "https://static.zoomalia.com/prod_img/131197/xl_315ad13a2a07ca4b7642959dc0c4c740ab61682426549.jpg";
-$products[4]->image = "https://img.fruugo.com/product/5/26/985286265_max.jpg";
-$products[5]->image = "https://m.media-amazon.com/images/I/517ES1nzSSL.jpg";
+try {
+    $products = [
+        new Food("Croccantini premium per cani", 10.00, $dog, "400", "cereali"),
+        new Game("Palla rimbalzante resistente per cani", 9.99, $dog, "ball", "gomma"),
+        new Product("Guinzaglio in pelle per cani di grossa taglia", 18.49, $dog),
+        new Food("Scatoletta di tonno e salmone per gatti", 1.49, $cat, "200", "tonno, salmone"),
+        new Game("Tunnel giocattolo per gatti", 12.99, $cat, "strutture", "tessuto"),
+        new Product("Lettiera igienica in cristalli per gatti", 7.99, $cat),
+    ];
+
+    // set delle immagini
+    $products[0]->image = "https://laspesaonline.eurospin.it/photo/2022/10/29/792/main/photo/6986201-16821501-20221028094343.jpg";
+    $products[1]->image = "https://www.sbsupply.it/media/catalog/product/cache/11/image/800x/602f0fa2c1f0d1ba5e241f914e856ff9/b/l/blanco_pagina_kopie_243_copy_221_1.jpg";
+    $products[2]->image = "https://www.fordogtrainers.it/images/large/Guinzaglio-pelle-L12_LRG.jpg";
+    $products[3]->image = "https://static.zoomalia.com/prod_img/131197/xl_315ad13a2a07ca4b7642959dc0c4c740ab61682426549.jpg";
+    $products[4]->image = "https://img.fruugo.com/product/5/26/985286265_max.jpg";
+    $products[5]->image = "https://m.media-amazon.com/images/I/517ES1nzSSL.jpg";
+
+} catch (Exception $e) {
+
+    $error = "Errore: " . $e->getMessage();
+
+}
+
+
 
 
 // var_dump($categories);
@@ -132,6 +143,18 @@ $products[5]->image = "https://m.media-amazon.com/images/I/517ES1nzSSL.jpg";
             ?>
 
         </div>
+
+        <?php
+
+        if ($error) {
+            ?>
+            <div class="alert alert-warning" role="alert">
+                <?= $error ?>
+            </div>
+            <?php
+        }
+
+        ?>
 
     </div>
 
