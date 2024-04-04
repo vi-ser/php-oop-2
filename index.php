@@ -5,7 +5,6 @@ require './Models/Product.php';
 require './Models/Food.php';
 require './Models/Game.php';
 
-
 $cat = new Category("Cat", "cat");
 $dog = new Category("Dog", "dog");
 
@@ -15,11 +14,11 @@ $categories = [
 ];
 
 $products = [
-    new Food("Croccantini premium per cani", 25.99, $dog, "400"),
-    new Game("Palla rimbalzante resistente per cani", 9.99, $dog, "ball"),
+    new Food("Croccantini premium per cani", 25.99, $dog, "400", "cereali"),
+    new Game("Palla rimbalzante resistente per cani", 9.99, $dog, "ball", "gomma"),
     new Product("Guinzaglio in pelle per cani di grossa taglia", 18.49, $dog),
-    new Food("Scatoletta di tonno e salmone per gatti", 1.49, $cat, "200"),
-    new Game("Tunnel giocattolo per gatti", 12.99, $cat, "strutture"),
+    new Food("Scatoletta di tonno e salmone per gatti", 1.49, $cat, "200", "tonno, salmone"),
+    new Game("Tunnel giocattolo per gatti", 12.99, $cat, "strutture", "tessuto"),
     new Product("Lettiera igienica in cristalli per gatti", 7.99, $cat),
 ];
 
@@ -30,8 +29,6 @@ $products[2]->image = "https://www.fordogtrainers.it/images/large/Guinzaglio-pel
 $products[3]->image = "https://static.zoomalia.com/prod_img/131197/xl_315ad13a2a07ca4b7642959dc0c4c740ab61682426549.jpg";
 $products[4]->image = "https://img.fruugo.com/product/5/26/985286265_max.jpg";
 $products[5]->image = "https://m.media-amazon.com/images/I/517ES1nzSSL.jpg";
-
-
 
 
 // var_dump($categories);
@@ -108,7 +105,23 @@ $products[5]->image = "https://m.media-amazon.com/images/I/517ES1nzSSL.jpg";
                             echo "<span class='badge bg-warning'>Product</span>";
                         }
                         ?>
-                        <h6 class="product-price text-info ">
+
+                        <?php
+                        if ($product instanceof Food) {
+                            echo "<span class='info'>Calorie: {$product->calories}</span>";
+                        } elseif ($product instanceof Game) {
+
+                            echo "<span class='info'>Genere: {$product->genre}</span>";
+                        }
+                        ?>
+
+                        <?php
+                        if ($product instanceof Food || $product instanceof Game) {
+                            echo "<br><span class='info'>Componenti: {$product->components}</br>";
+                        }
+                        ?>
+
+                        <h6 class="product-price mt-3 text-info ">
                             <?= "€ " . $product->price ?>
                         </h6>
                         <?= $product->getIcon() ?>
